@@ -1,0 +1,6 @@
+/* Localized versions of Info.plist keys */
+
+CFBundleName = "MRHeart";
+CFBundleShortVersionString = "1.0";
+CFBundleGetInfoString = "MRHeart version 1.0, Copyright (c) 2014 Konrad.";
+NSHumanReadableCopyright = "Copyright (c) 2014 Konrad.";
