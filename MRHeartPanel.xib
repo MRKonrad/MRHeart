@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="13771" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13771"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14460.31"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -20,76 +20,76 @@
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
-        <window title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" appearanceType="aqua" animationBehavior="default" id="UVK-Ep-fF8" customClass="NSPanel">
+        <window title="MRHeart" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" appearanceType="aqua" animationBehavior="default" id="UVK-Ep-fF8" customClass="NSPanel">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" utility="YES" HUD="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="136" y="163" width="522" height="270"/>
+            <rect key="contentRect" x="136" y="163" width="552" height="270"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
             <view key="contentView" id="xVg-Dv-atx">
-                <rect key="frame" x="0.0" y="0.0" width="522" height="270"/>
+                <rect key="frame" x="0.0" y="0.0" width="552" height="270"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <button identifier="LVEPI" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pyU-SW-yzN">
-                        <rect key="frame" x="20" y="233" width="90" height="17"/>
+                        <rect key="frame" x="14" y="233" width="121" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <buttonCell key="cell" type="inline" title="LV Epi (outer)" bezelStyle="inline" alignment="center" borderStyle="border" inset="2" id="8sf-dv-NAu">
-                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="smallSystemBold"/>
+                        <buttonCell key="cell" type="push" title="LV Epi (outer)" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="8sf-dv-NAu">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
+                            <font key="font" metaFont="system"/>
                         </buttonCell>
                         <connections>
                             <action selector="myDrawROI:" target="-2" id="sP7-hy-5sW"/>
                         </connections>
                     </button>
                     <button identifier="LVENDO" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="d4u-j4-04X">
-                        <rect key="frame" x="20" y="209" width="100" height="17"/>
+                        <rect key="frame" x="14" y="209" width="121" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <buttonCell key="cell" type="inline" title="LV Endo (inner)" bezelStyle="inline" alignment="center" borderStyle="border" inset="2" id="7B7-Oe-uuP">
+                        <buttonCell key="cell" type="push" title="LV Endo (inner)" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="7B7-Oe-uuP">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="smallSystemBold"/>
+                            <font key="font" metaFont="system"/>
                         </buttonCell>
                         <connections>
                             <action selector="myDrawROI:" target="-2" id="VcE-Pz-WjM"/>
                         </connections>
                     </button>
                     <button identifier="RVEPI" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eXr-MQ-oJH">
-                        <rect key="frame" x="20" y="185" width="91" height="17"/>
+                        <rect key="frame" x="14" y="185" width="121" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <buttonCell key="cell" type="inline" title="RV Epi (outer)" bezelStyle="inline" alignment="center" borderStyle="border" inset="2" id="BWX-Ir-Z9Q">
+                        <buttonCell key="cell" type="push" title="RV Epi (outer)" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="BWX-Ir-Z9Q">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="smallSystemBold"/>
+                            <font key="font" metaFont="system"/>
                         </buttonCell>
                         <connections>
                             <action selector="myDrawROI:" target="-2" id="ghs-3i-7c5"/>
                         </connections>
                     </button>
                     <button identifier="RVENDO" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ebG-h9-WVb">
-                        <rect key="frame" x="20" y="161" width="101" height="17"/>
+                        <rect key="frame" x="14" y="161" width="121" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <buttonCell key="cell" type="inline" title="RV Endo (inner)" bezelStyle="inline" alignment="center" borderStyle="border" inset="2" id="Kqy-Wl-4C2">
+                        <buttonCell key="cell" type="push" title="RV Endo (inner)" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="Kqy-Wl-4C2">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="smallSystemBold"/>
+                            <font key="font" metaFont="system"/>
                         </buttonCell>
                         <connections>
                             <action selector="myDrawROI:" target="-2" id="gAV-tH-129"/>
                         </connections>
                     </button>
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pcJ-ZQ-pht">
-                        <rect key="frame" x="183" y="49" width="40" height="17"/>
+                        <rect key="frame" x="181" y="41" width="69" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <buttonCell key="cell" type="inline" title="Auto" bezelStyle="inline" alignment="center" borderStyle="border" inset="2" id="JnZ-mA-b87">
+                        <buttonCell key="cell" type="push" title="Auto" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="JnZ-mA-b87">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="smallSystemBold"/>
+                            <font key="font" metaFont="system"/>
                         </buttonCell>
                         <connections>
                             <action selector="autoSetESED:" target="-2" id="ba4-2G-r1o"/>
                         </connections>
                     </button>
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fbq-Xq-wpe">
-                        <rect key="frame" x="20" y="137" width="65" height="17"/>
+                        <rect key="frame" x="14" y="137" width="121" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <buttonCell key="cell" type="inline" title="Calculate" bezelStyle="inline" alignment="center" borderStyle="border" inset="2" id="emI-9I-Bsc">
+                        <buttonCell key="cell" type="push" title="Calculate" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="emI-9I-Bsc">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="smallSystemBold"/>
+                            <font key="font" metaFont="system"/>
                         </buttonCell>
                         <connections>
                             <action selector="calcVolumes:" target="-2" id="Vcl-Xo-e2t"/>
@@ -100,7 +100,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="jh3-YK-nuf">
                             <font key="font" metaFont="system"/>
-                            <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
@@ -123,7 +123,7 @@
                         </textFieldCell>
                     </textField>
                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sFk-te-nP9">
-                        <rect key="frame" x="236" y="150" width="64" height="102"/>
+                        <rect key="frame" x="253" y="150" width="64" height="102"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" selectable="YES" sendsActionOnEndEditing="YES" alignment="right" title="Multiline Label" id="8aW-vS-t5x">
                             <font key="font" metaFont="system"/>
@@ -132,7 +132,7 @@
                         </textFieldCell>
                     </textField>
                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Tn5-3O-y8l">
-                        <rect key="frame" x="304" y="150" width="64" height="102"/>
+                        <rect key="frame" x="321" y="150" width="64" height="102"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" selectable="YES" sendsActionOnEndEditing="YES" alignment="right" title="Multiline Label" id="UdC-lq-2DA">
                             <font key="font" metaFont="system"/>
@@ -141,7 +141,7 @@
                         </textFieldCell>
                     </textField>
                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9kp-wv-kVG">
-                        <rect key="frame" x="372" y="150" width="64" height="102"/>
+                        <rect key="frame" x="389" y="150" width="64" height="102"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" selectable="YES" sendsActionOnEndEditing="YES" alignment="right" title="Multiline Label" id="jqa-zG-agi">
                             <font key="font" metaFont="system"/>
@@ -150,7 +150,7 @@
                         </textFieldCell>
                     </textField>
                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="S27-0D-hhM">
-                        <rect key="frame" x="128" y="148" width="36" height="119"/>
+                        <rect key="frame" x="145" y="148" width="36" height="119"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" sendsActionOnEndEditing="YES" id="fEa-yp-0kW">
                             <font key="font" metaFont="system"/>
@@ -165,7 +165,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="QCS-Ie-wfz">
                             <font key="font" metaFont="system"/>
-                            <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
@@ -183,12 +183,12 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="LvC-tt-Sld">
                             <font key="font" metaFont="system"/>
-                            <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sWx-HS-mKc">
-                        <rect key="frame" x="168" y="150" width="64" height="102"/>
+                        <rect key="frame" x="185" y="150" width="64" height="102"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" selectable="YES" sendsActionOnEndEditing="YES" title="Multiline Label" id="nsD-IG-kRM">
                             <font key="font" metaFont="system"/>
@@ -197,7 +197,7 @@
                         </textFieldCell>
                     </textField>
                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="40S-aq-1Pq">
-                        <rect key="frame" x="440" y="150" width="64" height="102"/>
+                        <rect key="frame" x="457" y="150" width="64" height="102"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" selectable="YES" sendsActionOnEndEditing="YES" alignment="right" title="Multiline Label" id="hAz-ey-mXX">
                             <font key="font" metaFont="system"/>
@@ -206,11 +206,11 @@
                         </textFieldCell>
                     </textField>
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JK5-Ri-WXb">
-                        <rect key="frame" x="349" y="21" width="153" height="17"/>
+                        <rect key="frame" x="336" y="12" width="202" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <buttonCell key="cell" type="inline" title="Import contours from file" bezelStyle="inline" alignment="center" borderStyle="border" inset="2" id="0oF-EF-hdD">
+                        <buttonCell key="cell" type="push" title="Import contours from a file" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="0oF-EF-hdD">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="smallSystemBold"/>
+                            <font key="font" metaFont="system"/>
                         </buttonCell>
                         <connections>
                             <action selector="myImport:" target="-2" id="rn3-QY-1v8"/>
@@ -218,7 +218,7 @@
                     </button>
                 </subviews>
             </view>
-            <point key="canvasLocation" x="160" y="164"/>
+            <point key="canvasLocation" x="175" y="164"/>
         </window>
         <button identifier="Import" verticalHuggingPriority="750" id="mD5-zX-1LL">
             <rect key="frame" x="0.0" y="0.0" width="153" height="17"/>

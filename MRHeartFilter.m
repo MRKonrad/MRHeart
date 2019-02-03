@@ -22,7 +22,7 @@
 
 // variables constant for the whole file
 int const nmyROIs = 4;
-NSString* const myROINames [] = {@"LVEPI",@"LVENDO",@"RVEPI",@"RVENDO"};
+NSString* const myROINames [] = {@"LVEPI", @"LVENDO", @"RVEPI", @"RVENDO"};
 RGBColor const myROIColors[] = {
     {0, 65535, 0},
     {65535, 0, 0},
@@ -38,9 +38,14 @@ RGBColor const myROIColors[] = {
  */
 - (long) filterImage:(NSString*) menuName
 {
+    NSAlert* msgBox = [[[NSAlert alloc] init] autorelease];
+    [msgBox setMessageText: @"Thank you for using MRHeart.\nFor more details visit\nmrkonrad.github.io/MRKonrad/MRHeart\nPlease consider citing my work: \nhttps://doi.org/10.5281/zenodo.1227712\nhttps://doi.org/10.24255/hbj/100671\nKonrad"];
+    [msgBox addButtonWithTitle: @"OK"];
+    [msgBox runModal];
+    
     [self openNewViewerKW];
     viewerController = [ViewerController frontMostDisplayed2DViewer];
-    
+
     // Window Controller
     NSWindowController *window = [[NSWindowController alloc] initWithWindowNibName:@"MRHeartPanel" owner:self];
     [window showWindow:self];
@@ -102,7 +107,7 @@ RGBColor const myROIColors[] = {
         ES.intValue = myminIDX + 1;
     } else{
         ED.intValue = 1;
-        ES.intValue = [[viewerController pixList] count]/2+1;
+        ES.intValue = (int)[[viewerController pixList] count]/2+1;
     }
 }
 
@@ -180,7 +185,7 @@ RGBColor const myROIColors[] = {
     int nslices = [viewerController maxMovieIndex];
     // number of frames in first slice
     NSMutableArray     *PixList = [viewerController pixList: 0];
-    int ntimes = [PixList count];
+    int ntimes = (int)[PixList count];
     
     // get areaArray
     NSMutableArray *areaArray;
@@ -249,7 +254,7 @@ RGBColor const myROIColors[] = {
     int nslices = [viewerController maxMovieIndex];
     // number of frames in first slice
     NSMutableArray     *PixList = [viewerController pixList: 0];
-    int ntimes = [PixList count];
+    int ntimes = (int)[PixList count];
     
     // do I have to initialize an array like this? =/
     NSNumber *temp =[[NSNumber alloc] initWithDouble:0];
@@ -312,11 +317,10 @@ RGBColor const myROIColors[] = {
     NSMutableArray *volumesArrayRVEPI = [self calcVolumesNew:@"RVEPI"];
     NSMutableArray *volumesArrayRVENDO = [self calcVolumesNew:@"RVENDO"];
     // check if ES and ED makes sense
-    int ntimes = [[viewerController pixList] count];
+    int ntimes = (int)[[viewerController pixList] count];
     int es = [ES intValue];
     int ed = [ED intValue];
     float bsa = [BSAfield floatValue];
-    if (bsa == 0) bsa = 1;
     if ((es < 0) || (es > ntimes) || (ed < 0) || (ed > ntimes)){
         NSAlert* msgBox = [[[NSAlert alloc] init] autorelease];
         [msgBox setMessageText: @"Problem with ES or ED"];
@@ -334,25 +338,47 @@ RGBColor const myROIColors[] = {
     double RVSV  = RVEDV-RVESV;
     double RVEF  = 100*RVSV/RVEDV;
     double RVm   = 1.05*([[volumesArrayRVEPI objectAtIndex:ed-1] doubleValue] - [[volumesArrayRVENDO objectAtIndex:ed-1] doubleValue]);
+    double LVESVbsa = 0, LVEDVbsa = 0, LVSVbsa = 0, LVmbsa = 0, RVESVbsa = 0, RVEDVbsa = 0, RVSVbsa = 0, RVmbsa = 0;
+    if (bsa != 0){
+        LVESVbsa = LVESV/bsa;
+        LVEDVbsa = LVEDV/bsa;
+        LVSVbsa = LVSV/bsa;
+        LVmbsa = LVm/bsa;
+        RVESVbsa = RVESV/bsa;
+        RVEDVbsa = RVEDV/bsa;
+        RVSVbsa = RVSV/bsa;
+        RVmbsa = RVm/bsa;
+    } else {
+        LVESVbsa = NAN;
+        LVEDVbsa = NAN;
+        LVSVbsa = NAN;
+        LVmbsa = NAN;
+        RVESVbsa = NAN;
+        RVEDVbsa = NAN;
+        RVSVbsa = NAN;
+        RVmbsa = NAN;
+    }
     
-    if (LVEDV == 0) LVEF = 0;
-    if (RVEDV == 0) RVEF = 0;
-    if (LVm < 0) LVm = 0;
-    if (RVm < 0) LVm = 0;
+    if (LVEDV == 0) LVEF = NAN;
+    if (RVEDV == 0) RVEF = NAN;
+    if (LVm < 0) LVm = NAN;
+    if (RVm < 0) RVm = NAN;
+    if (LVEDV == 0 || LVESV == 0) LVSV = NAN;
+    if (RVEDV == 0 || RVESV == 0) RVSV = NAN;
     
     NSString *unitsMilli = [NSString stringWithFormat:@"\n[ml]\n[ml]\n[ml]\n[%%]\n[g]"];
     NSString *lvMilli = [NSString stringWithFormat:@"LV:\n%.2f\n%.2f\n%.2f\n%.2f\n%.2f\n",LVESV,LVEDV,LVSV,LVEF,LVm];
-    NSString *lvbsaMilli = [NSString stringWithFormat:@"LV/BSA:\n%.2f\n%.2f\n%.2f\n\n%.2f\n",LVESV/bsa,LVEDV/bsa,LVSV/bsa,LVm/bsa];
+    NSString *lvbsaMilli = [NSString stringWithFormat:@"LV/BSA:\n%.2f\n%.2f\n%.2f\n\n%.2f\n",LVESVbsa,LVEDVbsa,LVSVbsa,LVmbsa];
     NSString *rvMilli = [NSString stringWithFormat:@"RV:\n%.2f\n%.2f\n%.2f\n%.2f\n%.2f\n",RVESV,RVEDV,RVSV,RVEF,RVm];
-    NSString *rvbsaMilli = [NSString stringWithFormat:@"RV/BSA:\n%.2f\n%.2f\n%.2f\n\n%.2f\n",RVESV/bsa,RVEDV/bsa,RVSV/bsa,RVm/bsa];
+    NSString *rvbsaMilli = [NSString stringWithFormat:@"RV/BSA:\n%.2f\n%.2f\n%.2f\n\n%.2f\n",RVESVbsa,RVEDVbsa,RVSVbsa,RVmbsa];
     
     NSString *unitsMicro = [NSString stringWithFormat:@"\n[ul]\n[ul]\n[ul]\n[%%]\n[mg]"];
     NSString *lvMicro = [NSString stringWithFormat:@"LV:\n%.2f\n%.2f\n%.2f\n%.2f\n%.2f\n",LVESV*1000,LVEDV*1000,LVSV*1000,LVEF,LVm*1000];
-    NSString *lvbsaMicro = [NSString stringWithFormat:@"LV/BSA:\n%.2f\n%.2f\n%.2f\n\n%.2f\n",LVESV/bsa*1000,LVEDV/bsa*1000,LVSV/bsa*1000,LVm/bsa*1000];
+    NSString *lvbsaMicro = [NSString stringWithFormat:@"LV/BSA:\n%.2f\n%.2f\n%.2f\n\n%.2f\n",LVESVbsa*1000,LVEDVbsa*1000,LVSVbsa*1000,LVmbsa*1000];
     NSString *rvMicro = [NSString stringWithFormat:@"RV:\n%.2f\n%.2f\n%.2f\n%.2f\n%.2f\n",RVESV*1000,RVEDV*1000,RVSV*1000,RVEF,RVm*1000];
-    NSString *rvbsaMicro = [NSString stringWithFormat:@"RV/BSA:\n%.2f\n%.2f\n%.2f\n\n%.2f\n",RVESV/bsa*1000,RVEDV/bsa*1000,RVSV/bsa*1000,RVm/bsa*1000];
+    NSString *rvbsaMicro = [NSString stringWithFormat:@"RV/BSA:\n%.2f\n%.2f\n%.2f\n\n%.2f\n",RVESVbsa*1000,RVEDVbsa*1000,RVSVbsa*1000,RVmbsa*1000];
     
-    if (LVESV < .1 || LVEDV < .1 || LVSV < .1){
+    if ((LVESV < .1 && LVESV != 0) || (LVEDV < .1 && LVEDV != 0) || (LVSV < .1 && LVSV != 0)){
         [units setStringValue:unitsMicro];
         [LVparams setStringValue:lvMicro];
         [LVBSAparams setStringValue:lvbsaMicro];
@@ -462,10 +488,10 @@ RGBColor const myROIColors[] = {
             if ([[lines objectAtIndex:iLine] hasPrefix: @"[XYCONTOUR]"])
             {
                 NSArray *components1 = [[lines objectAtIndex:iLine+1] componentsSeparatedByString:@" "];
-                int iSlice = [viewerController maxMovieIndex]-[[components1 objectAtIndex:0] integerValue]-1;
-                int iTime = [[components1 objectAtIndex:1] integerValue];
-                int ROItype = [[components1 objectAtIndex:2] integerValue];
-                int nPoints = [[lines objectAtIndex:iLine+2] integerValue];
+                long iSlice = [viewerController maxMovieIndex]-[[components1 objectAtIndex:0] integerValue]-1;
+                long iTime = [[components1 objectAtIndex:1] integerValue];
+                long ROItype = [[components1 objectAtIndex:2] integerValue];
+                long nPoints = [[lines objectAtIndex:iLine+2] integerValue];
                 NSMutableArray  *points = [[NSMutableArray alloc] initWithCapacity:nPoints];
                 
                 for (int iPoint = 0; iPoint < nPoints; iPoint++)
@@ -507,7 +533,7 @@ RGBColor const myROIColors[] = {
                 
                 [roiImageList addObject: newROI];
                 
-                NSLog(@"[XYCONTOUR] in line %d in Slice %d in Time %d ROI %d nPoints %d",iLine,iSlice,iTime,ROItype,nPoints);
+                NSLog(@"[XYCONTOUR] in line %d in Slice %ld in Time %ld ROI %ld nPoints %ld", iLine, iSlice, iTime, ROItype, nPoints);
             }
         }
         NSLog(@"Imported");
@@ -520,12 +546,12 @@ RGBColor const myROIColors[] = {
 
 - (void) openNewViewerKW
 {
-    BrowserController *currentBrowser = [BrowserController currentBrowser];
-    NSArray         *selectedLines = [currentBrowser databaseSelection]; // all selected lines
+    BrowserController  *currentBrowser = [BrowserController currentBrowser];
+    NSArray            *selectedLines = [currentBrowser databaseSelection]; // all selected lines
     NSManagedObject    *selectedLine = [selectedLines objectAtIndex: 0]; // first line, dtudy or series
     NSArray            *loadList;
     NSArray            *cells = [[currentBrowser oMatrix] selectedCells]; // all sels
-    NSMutableArray    *toOpenArray = [NSMutableArray array];
+    NSMutableArray     *toOpenArray = [NSMutableArray array];
     
     NSLog(@"I am where I want to be");
     [[currentBrowser database] lock];
@@ -589,7 +615,7 @@ RGBColor const myROIColors[] = {
     
     if( [toOpenArray count] == 1)    // Just one thumbnail is selected, check if multiples lines are selected
     {
-        NSArray            *singleSeries = [toOpenArray objectAtIndex: 0];
+        NSArray           *singleSeries = [toOpenArray objectAtIndex: 0];
         NSMutableArray    *splittedSeries = [NSMutableArray array];
         
         float interval=0;//, previousinterval = 0;
