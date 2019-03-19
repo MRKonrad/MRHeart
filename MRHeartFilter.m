@@ -168,7 +168,7 @@ RGBColor const myROIColors[] = {
     sliceDistance = [self dotProduct: tempnormal1 and: tempp];
     //NSLog(@"!!!Distance to previous slice: %g",sliceDistance);
     
-    return sliceDistance;
+    return fabs(sliceDistance);
 }
 
 /** calculating Volumes
@@ -184,7 +184,7 @@ RGBColor const myROIColors[] = {
     // number of slices selected
     int nslices = [viewerController maxMovieIndex];
     // number of frames in first slice
-    NSMutableArray     *PixList = [viewerController pixList: 0];
+    NSMutableArray *PixList = [viewerController pixList: 0];
     int ntimes = (int)[PixList count];
     
     // get areaArray
@@ -195,9 +195,9 @@ RGBColor const myROIColors[] = {
     double *sliceThickneses = malloc( nslices * sizeof(double) );
     for (int j = 0; j < nslices; j++)
     {
-        NSArray     *PixList = [viewerController pixList: j];
-        DCMPix      *curPix = [PixList objectAtIndex: 0];
-        sliceThickneses[j]=[curPix sliceThickness];
+        NSArray *PixList = [viewerController pixList: j];
+        DCMPix  *curPix = [PixList objectAtIndex: 0];
+        sliceThickneses[j] = [curPix sliceThickness];
     }
     
     // do I have to initialize an array like this? =/

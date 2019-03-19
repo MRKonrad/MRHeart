@@ -1,5 +1,4 @@
-# Osirix/Horos plugin gitignore:
-OsiriXApi.framework
+.DS_Store
 
 # Xcode
 #
