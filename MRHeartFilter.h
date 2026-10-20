@@ -8,12 +8,12 @@
 #include <Foundation/Foundation.h>
 #include <Accelerate/Accelerate.h>
 
-#import <OsiriXAPI/AppController.h>
-#import <OsiriXAPI/BrowserController.h>
-#import <OsiriXAPI/DicomStudy.h>
-#import <OsiriXAPI/DicomSeries.h>
-#import <OsiriXAPI/DicomImage.h>
-#import <OsiriXAPI/PluginFilter.h>
+#import <Horos/AppController.h>
+#import <Horos/BrowserController.h>
+#import <Horos/DicomStudy.h>
+#import <Horos/DicomSeries.h>
+#import <Horos/DicomImage.h>
+#import <Horos/PluginFilter.h>
 
 #import "DCMObject.h"
 #import "DCMAttribute.h"
